@@ -5,19 +5,18 @@ bool duplicateB(string s){
     
     stack <char> charStack;
     for(int i=0; i<s.size(); ++i){
+
         if(s[i]==')'){
 
             if(charStack.top()=='(')
                 return true;
 
-            while(true){
-                if(charStack.top()=='('){
-                    charStack.pop();
-                    break;
-                }
+            while(!charStack.empty() && charStack.top()!='(')
                 charStack.pop();
-            }
+            
+            charStack.pop();
         }
+        
         else
             charStack.push(s[i]);
     }
